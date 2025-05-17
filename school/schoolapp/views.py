@@ -12,11 +12,21 @@ def homepage(request):
 def base(request):
     return render(request,'base.html')
 
+def pricing(request):
+    return render(request,'pricing.html')
+
+def course_details(request):
+    return render(request,'course-details.html')
+
 def about(request):
     return render(request,'about.html')
 
 def contact(request):
     return render(request,'contact.html')
+
+def events(request):
+    return render(request,'events.html')
+
 
 def courses(request):
     course_data=Course.objects.all()
@@ -28,6 +38,15 @@ def trainers(request):
     context={'teacher_data':teacher_data}
     return render(request,'trainers.html',context)
 
+def detailcourse(request):
+    course_data=Course.objects.all()
+    context={'course_data':course_data}
+    return render(request,'detailcourse.html',context)
+
+def detailteacher(request):
+    teacher_data=Teacher.objects.all()
+    context={'teacher_data':teacher_data}
+    return render(request,'detailteacher.html',context)
 
 
 def addteacher(request):

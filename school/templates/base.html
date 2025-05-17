@@ -28,6 +28,7 @@
   <!-- Main CSS File -->
   <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
 
+  <link rel="stylesheet" href="{% static 'css/css/bootstrap.min.css' %}">
   <!-- =======================================================
   * Template Name: Mentor
   * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
@@ -42,8 +43,19 @@
     }
     .imgte{
         width:360px;
-        height:240px;
+        height:220px;
     }
+    .imgtea{
+        width:320px;
+        height:180px;
+    }
+    .imgup {
+      width: 320px;
+      height: 280px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    
   </style>
 
 </head>
@@ -65,12 +77,12 @@
           <li><a href="{% url 'about'%}">About</a></li>
           <li><a href="{% url 'courses'%}">Courses</a></li>
           <li><a href="{% url 'trainers'%}">Trainers</a></li>
-          <li><a href="#">Events</a></li>
-          <li><a href="#">Pricing</a></li>
+          <li><a href="{% url 'events'%}">Events</a></li>
+          <li><a href="{% url 'pricing'%}">Pricing</a></li>
           <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <li><a href="{% url 'detailcourse'%}">Update Course</a></li>
+              <!-- <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
                   <li><a href="#">Deep Dropdown 1</a></li>
                   <li><a href="#">Deep Dropdown 2</a></li>
@@ -78,13 +90,13 @@
                   <li><a href="#">Deep Dropdown 4</a></li>
                   <li><a href="#">Deep Dropdown 5</a></li>
                 </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
+              </li> -->
+              <li><a href="{% url 'detailteacher'%}">Update Teacher</a></li>
+              <li><a href="{% url 'addcourse' %}">Add Course</a></li>
+              <li><a href="{% url 'addteacher' %}">Add Teacher</a></li>
             </ul>
           </li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

@@ -21,7 +21,7 @@
       <div class="container">
         <ol>
           <li><a href="{% url 'homepage'%}">Home</a></li>
-          <li class="current">Trainers</li>
+          <li><a href="{% url 'trainers'%}">Trainers</a></li>
         </ol>
       </div>
     </nav>
@@ -48,7 +48,7 @@
             <h4>{{t.name}}</h4>
             <span>{{t.course}}</span>
             <p>{{t.description}}</p>
-            
+            <a href="{% url 'teacherdetail' t.id %}"><p >Update/Delete</p></a>
           </div>
         </div><!-- End Team Member -->
         {% endfor %}

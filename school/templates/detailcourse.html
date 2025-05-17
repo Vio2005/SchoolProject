@@ -21,7 +21,7 @@
       <div class="container">
         <ol>
           <li><a href="{% url 'homepage'%}">Home</a></li>
-          <li class="current">Courses</li>
+          <li><a href="{% url 'courses'%}">Courses</a></li>
         </ol>
       </div>
     </nav>
@@ -39,13 +39,17 @@
             <img src="{{c.photo.url}}" class="img-fluid imgit" alt="...">
             <div class="course-content">
               <div class="d-flex justify-content-between align-items-center mb-3">
-               <p class="category">Programming Language</p>
+                <p class="category">Programming Language</p>
                 <p class="price">{{c.fee}} $</p>
               </div>
 
               <h3><a href="course-details.html">{{c.name}}</a></h3>
               <p class="description">{{c.description}}</p>
+              <div style="text-align: center;">
+              <a href="{% url 'coursedetail' c.id %}"><p >Update/Delete</p></a>
+             </div>
               <div class="trainer d-flex justify-content-between align-items-center">
+                
                 <div class="trainer-profile d-flex align-items-center">
                   <img src="assets/img/trainers/trainer-1-2.jpg" class="img-fluid" alt="">
                   <a href="" class="trainer-link">Antonio</a>
