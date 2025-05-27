@@ -20,3 +20,9 @@ class Course(models.Model):
     description=models.TextField()
     def __str__(self):
         return self.name
+    
+class User(models.Model):
+    username=models.CharField(max_length=255)
+    password=models.TextField()
+    def __str__(self):
+        return self.username

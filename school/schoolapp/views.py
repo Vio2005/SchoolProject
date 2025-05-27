@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect,HttpResponse
 from.models import *
 from .forms import *
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 
 def homepage(request):
     teacher_data=Teacher.objects.all()
@@ -18,6 +21,7 @@ def pricing(request):
 def course_details(request):
     return render(request,'course-details.html')
 
+@login_required(login_url='/loginview/')
 def about(request):
     return render(request,'about.html')
 
@@ -118,5 +122,25 @@ def deleteteacher(request,id):
 def deletecourse(request,id):
     data=Course.objects.filter(id=id).delete()
     return redirect('/courses')
+
+def loginview(request):
+    if request.method == 'POST':
+    
+        usr = request.POST.get('username')
+        pas = request.POST.get('password')
+        usr_auth=authenticate(username=usr,password=pas)
+        if usr_auth:
+            login(request, usr_auth)
+            return redirect('/homepage')
+        else:
+            return redirect('/loginview')
+    else:
+
+        return render(request, 'login.html')
+    
+def logout(request):
+    logout()
+    return redirect('login/')
+
 
    
