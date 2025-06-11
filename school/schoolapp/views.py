@@ -4,6 +4,10 @@ from .forms import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.views.generic import View
+
+
 
 def homepage(request):
     teacher_data=Teacher.objects.all()
@@ -141,6 +145,40 @@ def loginview(request):
 def logout(request):
     logout()
     return redirect('login/')
+
+def register_view(request):
+    if request.method=="POST":
+        username=request.POST['username']
+        password=request.POST['password1']
+        firstname=request.POST['fname']
+        lastname=request.POST['lname']
+        user=User.objects.filter(username=username)
+        if user.exists():
+            return redirect('register/')
+        else:
+            usr=User.objects.create_user(username=username,first_name=firstname,last_name=lastname)
+            usr.set_password(password)
+            usr.is_staff=True
+            usr.save()
+            return redirect ('/loginview')
+          
+    else:
+           
+        
+        return render(request,'register.html')
+
+class LoginRequire(object):
+    def dispatch(self,request,*arg,**kwargs):
+        if request.user.is_authenticated and request.user.is_staff:
+            pass
+        else:
+            return redirect('/register')
+        return super().dispatch(request,*arg,**kwargs)
+    
+class HomeView(LoginRequire,View):
+    def get(self,request):
+        return render(request,'index.html')
+
 
 
    
